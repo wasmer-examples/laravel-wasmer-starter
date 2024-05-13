@@ -21,4 +21,7 @@ You can run the Laravel example using Wasmer (check out the [install guide](http
 wasmer run . --net
 ```
 
+> [!Note]
+> You may need to replace the absolute path of the current dir `bootstrap/cache/config.php` with `/app`: `sed 's|'$PWD'|/app|g' bootstrap/cache/config.php > bootstrap/cache/config.php`.
+
 Open [http://127.0.0.1:8000](http://127.0.0.1:8000) with your browser to see your Laravel app.

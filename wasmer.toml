@@ -1,28 +1,23 @@
 [package]
-name = "a/b"
-version = '0.0.0'
-description = ""
 entrypoint = "run"
 
 [dependencies]
-"arshia001/php" = "=8.3.4-pre.2"
+"php/php" = "=8.3.4-beta.2"
 
 [fs]
 "/app/" = "."
 
 [[command]]
 name = "run"
-module = "arshia001/php:php"
+module = "php/php:php"
 runner = "wasi"
 [command.annotations.wasi]
-env = ["USE_ZEND_ALLOC=0"]
-main-args = ["-t", "/app/public", "-S", "localhost:8080", "-d", "opcache.enable=1", "-d", "opcache.enable_cli=1"]
+main-args = ["-t", "/app/public", "-S", "localhost:8080"]
 
 
 [[command]]
 name = "artisan"
-module = "arshia001/php:php"
+module = "php/php:php"
 runner = "wasi"
 [command.annotations.wasi]
-env = ["USE_ZEND_ALLOC=0"]
-main-args = ["/app/artisan", "-d", "opcache.enable=1", "-d", "opcache.enable_cli=1"]
+main-args = ["/app/artisan"]
