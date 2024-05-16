@@ -40,4 +40,4 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist
       - name: Deploy app to Wasmer Edge
-        run: wasmer deploy --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id --namespace wasmer-examples
+        run: wasmer deploy --token=${{ secrets.WASMER_CIUSER_PROD_TOKEN }} --non-interactive --no-wait --no-persist-id
