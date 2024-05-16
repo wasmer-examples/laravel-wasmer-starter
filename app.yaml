@@ -1,7 +1,4 @@
 kind: wasmer.io/App.v0
-name: laravel
-owner: wasmer-examples
 package: .
-app_id: da_RjPIgtQUmWVK
 scaling:
   mode: single_concurrency
