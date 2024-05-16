@@ -1,6 +1,3 @@
-[package]
-entrypoint = "run"
-
 [dependencies]
 "php/php" = "=8.3.4-beta.3"
 
@@ -13,11 +10,3 @@ module = "php/php:php"
 runner = "wasi"
 [command.annotations.wasi]
 main-args = ["-t", "/app/public", "-S", "localhost:8080"]
-
-
-[[command]]
-name = "artisan"
-module = "php/php:php"
-runner = "wasi"
-[command.annotations.wasi]
-main-args = ["/app/artisan"]
