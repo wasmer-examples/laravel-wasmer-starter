@@ -18,7 +18,7 @@ php artisan serve
 You can run the Laravel example using Wasmer (check out the [install guide](https://docs.wasmer.io/install)):
 
 ```bash
-wasmer run . --net
+wasmer run .
 ```
 
 > [!IMPORTANT]
