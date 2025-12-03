@@ -1,27 +1,36 @@
-This is a [Laravel](https://laravel.org/) project bootstrapped with `composer create-project laravel/laravel laravel-wasmer-example` (with some minor adaptations for Wasmer).
+# Laravel Starter + Wasmer
 
+This example shows how to deploy a standard **Laravel** application on **Wasmer Edge**.
 
-## Getting Started
+## Demo
 
-First, install the dependencies:
+`https://<your-subdomain>.wasmer.app/` (deploy to get your own Laravel instance)
+
+## How it Works
+
+The project comes from `composer create-project laravel/laravel` with light tweaks:
+
+* `routes/web.php` defines the default route that returns the `welcome` Blade view.
+* `public/index.php` is Laravel’s front controller; Wasmer points traffic here.
+* Cached configuration under `bootstrap/cache/` may contain absolute paths—update them to `/app/...` during deployment so they match Wasmer’s filesystem layout.
+
+Add controllers, middleware, and Blade templates as you would in any Laravel app.
+
+## Running Locally
 
 ```bash
 composer install
+php artisan serve --host 127.0.0.1 --port 8000
 ```
 
-You can run the development server:
+Visit `http://127.0.0.1:8000/` to confirm the welcome page. For parity with Wasmer, you can also run:
 
 ```bash
-php artisan serve
+php -S 127.0.0.1:8000 -t public
 ```
 
-You can run the Laravel example using Wasmer (check out the [install guide](https://docs.wasmer.io/install)):
+## Deploying to Wasmer (Overview)
 
-```bash
-wasmer run .
-```
-
-> [!IMPORTANT]
-> You may need to replace the absolute path of the current dir `$PWD` with `/app` in `bootstrap/cache/config.php`: `sed 's|'$PWD'|/app|g' bootstrap/cache/config.php > bootstrap/cache/config.php`.
-
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000) with your browser to see your Laravel app.
+1. Run `composer install --no-dev --optimize-autoloader` and (optionally) `php artisan config:cache route:cache`.
+2. Rewrite cached paths to `/app` if necessary (`sed -i '' "s|$PWD|/app|g" bootstrap/cache/*.php` on macOS).
+3. Deploy to Wasmer Edge with a start command like `php -S 0.0.0.0:$PORT -t public`.
